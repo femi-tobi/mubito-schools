@@ -29,7 +29,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <form className="bg-white p-8 rounded shadow-md w-80" onSubmit={handleLogin}>
         <h2 className="text-xl font-bold mb-4 text-center">🔒 Login to Access Your Result</h2>
         {isAdmin ? (
@@ -43,10 +43,10 @@ export default function Login() {
             <input className="w-full mb-2 p-2 border" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
           </>
         )}
-        <button className="w-full bg-blue-500 text-white p-2 rounded mt-2" type="submit">Login</button>
+        <button className="w-full bg-mubito-maroon hover:bg-mubito-maroon-light text-white p-2 rounded mt-2" type="submit">Login</button>
         <div className="flex justify-between mt-2">
-          <span className="text-sm text-blue-600 cursor-pointer" onClick={() => alert('Password reset not implemented')}>Forgot Password?</span>
-          <span className="text-sm text-blue-600 cursor-pointer" onClick={() => setIsAdmin(!isAdmin)}>{isAdmin ? 'Student Login?' : 'Admin Login?'}</span>
+          <span className="text-sm text-mubito-navy cursor-pointer" onClick={() => alert('Password reset not implemented')}>Forgot Password?</span>
+          <span className="text-sm text-mubito-navy cursor-pointer" onClick={() => setIsAdmin(!isAdmin)}>{isAdmin ? 'Student Login?' : 'Admin Login?'}</span>
         </div>
       </form>
     </div>
