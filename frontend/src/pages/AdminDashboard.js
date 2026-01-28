@@ -931,45 +931,53 @@ export default function AdminDashboard() {
               <div className="text-mubito-navy">No pending results to approve.</div>
             ) : (
               <>
-              <table className="min-w-full">
-                <thead>
-                  <tr>
-                    <th className="py-2 px-4 text-left"><input type="checkbox" checked={selectedPending.length === pendingStudents.length && pendingStudents.length > 0} onChange={toggleSelectAllPending} /></th>
-                    <th className="py-2 px-4 text-left">Student</th>
-                    <th className="py-2 px-4 text-left">Class</th>
-                    <th className="py-2 px-4 text-left">Term</th>
-                    <th className="py-2 px-4 text-left">Session</th>
-                    <th className="py-2 px-4 text-left">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pendingStudents.map(s => (
-                    <tr key={s.student_id + s.term + s.session}>
-                      <td className="py-2 px-4"><input type="checkbox" checked={selectedPending.includes(`${s.student_id}||${s.term}||${s.session}`)} onChange={() => toggleSelectPending(`${s.student_id}||${s.term}||${s.session}`)} /></td>
-                      <td className="py-2 px-4">{s.fullname}</td>
-                      <td className="py-2 px-4">{s.class}</td>
-                      <td className="py-2 px-4">{s.term}</td>
-                      <td className="py-2 px-4">{s.session}</td>
-                      <td className="py-2 px-4 flex gap-2">
-                        <button
-                          className="bg-blue-600 hover:bg-blue-800 text-white px-3 py-1 rounded"
-                          onClick={() => viewPendingResults(s.student_id, s.term, s.session, s)}
-                        >
-                          View
-                        </button>
-                        <button
-                          className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-3 py-1 rounded"
-                          onClick={() => approveResults(s.student_id, s.term, s.session)}
-                        >
-                          Approve Results
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="overflow-x-auto -mx-4 md:mx-0">
+                <div className="inline-block min-w-full align-middle">
+                  <div className="overflow-hidden">
+                    <table className="min-w-full">
+                      <thead>
+                        <tr>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm"><input type="checkbox" checked={selectedPending.length === pendingStudents.length && pendingStudents.length > 0} onChange={toggleSelectAllPending} /></th>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Student</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Class</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Term</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Session</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {pendingStudents.map(s => (
+                          <tr key={s.student_id + s.term + s.session}>
+                            <td className="py-2 px-2 md:px-4"><input type="checkbox" checked={selectedPending.includes(`${s.student_id}||${s.term}||${s.session}`)} onChange={() => toggleSelectPending(`${s.student_id}||${s.term}||${s.session}`)} /></td>
+                            <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{s.fullname}</td>
+                            <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{s.class}</td>
+                            <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{s.term}</td>
+                            <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{s.session}</td>
+                            <td className="py-2 px-2 md:px-4">
+                              <div className="flex flex-col md:flex-row gap-2">
+                                <button
+                                  className="bg-blue-600 hover:bg-blue-800 text-white px-3 py-1 rounded text-xs md:text-sm whitespace-nowrap"
+                                  onClick={() => viewPendingResults(s.student_id, s.term, s.session, s)}
+                                >
+                                  View
+                                </button>
+                                <button
+                                  className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-3 py-1 rounded text-xs md:text-sm whitespace-nowrap"
+                                  onClick={() => approveResults(s.student_id, s.term, s.session)}
+                                >
+                                  Approve
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <div className="mt-3">
-                <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-3 py-1 rounded mr-2" onClick={handleApproveSelected} disabled={selectedPending.length === 0}>Approve Selected</button>
+                <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-3 py-1 rounded mr-2 text-xs md:text-sm" onClick={handleApproveSelected} disabled={selectedPending.length === 0}>Approve Selected</button>
                 <span className="text-sm text-gray-600">{selectedPending.length} selected</span>
               </div>
               </>
@@ -978,34 +986,40 @@ export default function AdminDashboard() {
         </div>
         {/* Modal for pending result details */}
         {pendingModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 relative w-full max-w-xl">
+          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 relative w-full max-w-xl max-h-[90vh] overflow-y-auto">
               <button className="absolute top-2 right-2 text-2xl" onClick={() => setPendingModalOpen(false)}>&times;</button>
-              <h4 className="font-bold mb-4 text-mubito-navy">Pending Results for {pendingModalStudent?.fullname} ({pendingModalStudent?.student_id})</h4>
+              <h4 className="font-bold mb-4 text-mubito-navy text-sm md:text-base">Pending Results for {pendingModalStudent?.fullname} ({pendingModalStudent?.student_id})</h4>
               {pendingModalResults.length === 0 ? (
                 <div className="text-red-600">No results found for this student/term/session.</div>
               ) : (
-                <table className="min-w-full mb-4">
-                  <thead>
-                    <tr>
-                      <th className="py-2 px-4 text-left">Subject</th>
-                      <th className="py-2 px-4 text-left">Score</th>
-                      <th className="py-2 px-4 text-left">Grade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pendingModalResults.map((r, idx) => (
-                      <tr key={r.subject + idx}>
-                        <td className="py-2 px-4">{r.subject}</td>
-                        <td className="py-2 px-4">{r.score}</td>
-                        <td className="py-2 px-4">{r.grade}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="overflow-x-auto -mx-4 md:mx-0">
+                  <div className="inline-block min-w-full align-middle">
+                    <div className="overflow-hidden">
+                      <table className="min-w-full mb-4">
+                        <thead>
+                          <tr>
+                            <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Subject</th>
+                            <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Score</th>
+                            <th className="py-2 px-2 md:px-4 text-left text-xs md:text-sm">Grade</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {pendingModalResults.map((r, idx) => (
+                            <tr key={r.subject + idx}>
+                              <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.subject}</td>
+                              <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.score}</td>
+                              <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.grade}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               )}
               <button
-                className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-4 py-2 rounded"
+                className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-4 py-2 rounded w-full md:w-auto text-sm md:text-base"
                 onClick={() => approveResults(pendingModalStudent.student_id, pendingModalStudent.term, pendingModalStudent.session)}
               >
                 Approve Results

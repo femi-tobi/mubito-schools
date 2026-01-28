@@ -528,61 +528,67 @@ export default function TeacherDashboard() {
                   overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex items-start md:items-center justify-center overflow-y-auto py-4"
                 >
                   <h3 className="font-bold mb-2 text-mubito-navy text-base md:text-lg">Results for {modalStudent?.fullname}</h3>
-                  <div className="mb-4 overflow-x-auto">
-                    <table className="min-w-[400px] w-full mb-2">
-                      <thead className="bg-mubito-navy-light bg-opacity-20">
-                        <tr>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Subject</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA1</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA2</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Exam</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Total</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Grade</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Remark</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {studentResults.map(r => (
-                          <tr key={r.id}>
-                            <td className="py-2 px-2 md:px-4">{r.subject}</td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input type="number" value={studentEdits[r.id]?.ca1 ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], ca1: e.target.value } }))} className="border p-1 rounded w-full md:w-20" />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input type="number" value={studentEdits[r.id]?.ca2 ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], ca2: e.target.value } }))} className="border p-1 rounded w-full md:w-20" />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input type="number" value={studentEdits[r.id]?.score ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], score: e.target.value } }))} className="border p-1 rounded w-full md:w-20" />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">{(Number(studentEdits[r.id]?.ca1 || 0) + Number(studentEdits[r.id]?.ca2 || 0) + Number(r.ca3 || 0) + Number(studentEdits[r.id]?.score || 0))}</td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input type="text" value={studentEdits[r.id]?.grade ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], grade: e.target.value } }))} className="border p-1 rounded w-full md:w-20" />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input type="text" value={studentEdits[r.id]?.remark ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], remark: e.target.value } }))} className="border p-1 rounded w-full md:w-24" />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded mr-2" onClick={async () => {
-                                try {
-                                  const payload = { ca1: studentEdits[r.id]?.ca1, ca2: studentEdits[r.id]?.ca2, score: studentEdits[r.id]?.score, grade: studentEdits[r.id]?.grade, remark: studentEdits[r.id]?.remark };
-                                  await axios.put(`http://localhost:5000/api/results/manual/${r.id}`, payload);
-                                  // Refresh results
-                                  const res = await axios.get(`http://localhost:5000/api/results?student_id=${modalStudent.student_id}&class=${selectedClass}&term=${term}&session=${session}`);
-                                  setStudentResults(res.data);
-                                  const edits = {};
-                                  res.data.forEach(rr => { edits[rr.id] = { ca1: rr.ca1 ?? '', ca2: rr.ca2 ?? '', score: rr.score ?? '', grade: rr.grade ?? '', remark: rr.remark ?? '' }; });
-                                  setStudentEdits(edits);
-                                  setModalMsg('Result updated and pending approval.');
-                                } catch (err) {
-                                  setModalMsg('Error updating result.');
-                                }
-                              }}>Save</button>
-                              <span className="text-sm text-gray-600">{r.approved ? 'Approved' : 'Pending'}</span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  <div className="mb-4">
+                    <div className="overflow-x-auto -mx-4 md:mx-0">
+                      <div className="inline-block min-w-full align-middle">
+                        <div className="overflow-hidden">
+                          <table className="min-w-full">
+                            <thead className="bg-mubito-navy-light bg-opacity-20">
+                              <tr>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Subject</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">CA1</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">CA2</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Exam</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Total</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Grade</th>
+                                <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Remark</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {studentResults.map(r => (
+                                <tr key={r.id}>
+                                  <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.subject}</td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input type="number" value={studentEdits[r.id]?.ca1 ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], ca1: e.target.value } }))} className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm" />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input type="number" value={studentEdits[r.id]?.ca2 ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], ca2: e.target.value } }))} className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm" />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input type="number" value={studentEdits[r.id]?.score ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], score: e.target.value } }))} className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm" />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{(Number(studentEdits[r.id]?.ca1 || 0) + Number(studentEdits[r.id]?.ca2 || 0) + Number(r.ca3 || 0) + Number(studentEdits[r.id]?.score || 0))}</td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input type="text" value={studentEdits[r.id]?.grade ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], grade: e.target.value } }))} className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm" />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input type="text" value={studentEdits[r.id]?.remark ?? ''} onChange={e => setStudentEdits(prev => ({ ...prev, [r.id]: { ...prev[r.id], remark: e.target.value } }))} className="border p-1 rounded w-20 md:w-24 text-xs md:text-sm" />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-xs whitespace-nowrap" onClick={async () => {
+                                      try {
+                                        const payload = { ca1: studentEdits[r.id]?.ca1, ca2: studentEdits[r.id]?.ca2, score: studentEdits[r.id]?.score, grade: studentEdits[r.id]?.grade, remark: studentEdits[r.id]?.remark };
+                                        await axios.put(`http://localhost:5000/api/results/manual/${r.id}`, payload);
+                                        // Refresh results
+                                        const res = await axios.get(`http://localhost:5000/api/results?student_id=${modalStudent.student_id}&class=${selectedClass}&term=${term}&session=${session}`);
+                                        setStudentResults(res.data);
+                                        const edits = {};
+                                        res.data.forEach(rr => { edits[rr.id] = { ca1: rr.ca1 ?? '', ca2: rr.ca2 ?? '', score: rr.score ?? '', grade: rr.grade ?? '', remark: rr.remark ?? '' }; });
+                                        setStudentEdits(edits);
+                                        setModalMsg('Result updated and pending approval.');
+                                      } catch (err) {
+                                        setModalMsg('Error updating result.');
+                                      }
+                                    }}>Save</button>
+                                    <span className="text-xs text-gray-600 ml-1">{r.approved ? 'Approved' : 'Pending'}</span>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mb-4 overflow-x-auto">
                     <button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mb-2 w-full md:w-auto" onClick={handleAddBatchRow}>+ Add Subject Row</button>
@@ -666,39 +672,45 @@ export default function TeacherDashboard() {
                   <input type="text" name="session" value={historyFilters.session} onChange={handleHistoryFilterChange} placeholder="Session" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
                   <input type="text" name="grade" value={historyFilters.grade} onChange={handleHistoryFilterChange} placeholder="Grade" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
             </div>
-                <div className="overflow-x-auto">
-                  {/* Group results by student_id */}
-                {Object.entries(historyResults.reduce((acc, r) => {
-                  if (!acc[r.student_id]) acc[r.student_id] = [];
-                  acc[r.student_id].push(r);
-                  return acc;
-                }, {})).map(([student_id, results]) => (
-                  <div key={student_id} className="mb-6 border border-mubito-maroon rounded p-4">
-                    <h4 className="font-bold text-mubito-navy mb-3">Student ID: {student_id} ({results.length} {results.length === 1 ? 'result' : 'results'})</h4>
-                    <table className="min-w-[500px] w-full bg-gray-50 rounded">
-                      <thead className="bg-mubito-navy-light bg-opacity-20">
-                        <tr>
-                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Subject</th>
-                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Score</th>
-                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Grade</th>
-                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Term</th>
-                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Session</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {results.map(r => (
-                          <tr key={r.id} className="border-b">
-                            <td className="py-2 px-4">{r.subject}</td>
-                            <td className="py-2 px-4">{r.score}</td>
-                            <td className="py-2 px-4">{r.grade}</td>
-                            <td className="py-2 px-4">{r.term}</td>
-                            <td className="py-2 px-4">{r.session}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                <div className="overflow-x-auto -mx-4 md:mx-0">
+                  <div className="inline-block min-w-full align-middle">
+                    <div className="overflow-hidden">
+                      {/* Group results by student_id */}
+                      {Object.entries(historyResults.reduce((acc, r) => {
+                        if (!acc[r.student_id]) acc[r.student_id] = [];
+                        acc[r.student_id].push(r);
+                        return acc;
+                      }, {})).map(([student_id, results]) => (
+                        <div key={student_id} className="mb-6 border border-mubito-maroon rounded p-3 md:p-4">
+                          <h4 className="font-bold text-mubito-navy mb-3 text-sm md:text-base">Student ID: {student_id} ({results.length} {results.length === 1 ? 'result' : 'results'})</h4>
+                          <div className="overflow-x-auto">
+                            <table className="min-w-full bg-gray-50 rounded">
+                              <thead className="bg-mubito-navy-light bg-opacity-20">
+                                <tr>
+                                  <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Subject</th>
+                                  <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Score</th>
+                                  <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Grade</th>
+                                  <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Term</th>
+                                  <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Session</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {results.map(r => (
+                                  <tr key={r.id} className="border-b">
+                                    <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.subject}</td>
+                                    <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.score}</td>
+                                    <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.grade}</td>
+                                    <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.term}</td>
+                                    <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{r.session}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
             </div>
               </div>
             )}
