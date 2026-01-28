@@ -82,9 +82,9 @@ router.get('/:student_id/result/pdf', async (req, res) => {
 
   // Calculate y-position for header text so it doesn't overlap the logo
   const headerTextY = logoY + 1;
-  doc.fontSize(20).font('Helvetica-Bold').text("DANDEB HIGH SCHOOL.", borderMargin, headerTextY, { align: 'center', width: usableWidth });  
+  doc.fontSize(20).font('Helvetica-Bold').text("MUBITO HIGH SCHOOL.", borderMargin, headerTextY, { align: 'center', width: usableWidth });  
   doc.fontSize(9).font('Helvetica').text('59, BAYO OLUFEMI STREET, HERITAGE ESTATE, ABORU, IYANA-IPAJA, LAGOS STATE', borderMargin, headerTextY + 19, { align: 'center', width: usableWidth });
-  doc.text('Phone: 08150749181, 07082998471 | Email: dandebhighschool@gmail.com | Web: www.dandebschools.com', borderMargin, headerTextY + 28, { align: 'center', width: usableWidth });
+  doc.text('Phone: 08150749181, 07082998471 | Email: mubitohighschool@gmail.com | Web: www.mubitoschools.com', borderMargin, headerTextY + 28, { align: 'center', width: usableWidth });
   doc.fontSize(13).font('Helvetica-Bold').text(`REPORT SHEET FOR ${term.toUpperCase()}, ${session} ACADEMIC SESSION`, borderMargin, headerTextY + 40, { align: 'center', width: usableWidth });
   doc.moveTo(borderMargin, headerTextY + 60).lineTo(pageWidth - borderMargin, headerTextY + 60).stroke();
 
