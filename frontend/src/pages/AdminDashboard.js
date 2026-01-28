@@ -547,7 +547,7 @@ export default function AdminDashboard() {
       case 'students':
         return (
           <div className="bg-white rounded shadow p-6 max-w-2xl">
-            <h3 className="font-bold mb-2 text-green-700">Add/Edit Students</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">Add/Edit Students</h3>
             <div className="mb-4 flex gap-2 items-center">
               <label className="font-semibold">Class:</label>
               <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)} className="border p-2 rounded w-full md:w-48">
@@ -589,17 +589,17 @@ export default function AdminDashboard() {
                         <option key={s.id || s.name} value={s.name}>{s.name}</option>
                       ))}
                     </select>
-                    <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">{studentForm.editId ? 'Update' : 'Add'}</button>
+                    <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">{studentForm.editId ? 'Update' : 'Add'}</button>
                   </div>
-                  {studentMsg && <span className="text-green-700 ml-2">{studentMsg}</span>}
+                  {studentMsg && <span className="text-mubito-navy ml-2">{studentMsg}</span>}
                 </form>
                 <div className="overflow-x-auto">
-                <table className="min-w-[600px] bg-green-50 rounded">
-                  <thead className="bg-green-200">
+                <table className="min-w-[600px] bg-gray-50 rounded">
+                  <thead className="bg-mubito-navy-light bg-opacity-20">
                     <tr>
-                      <th className="py-2 px-4 text-left text-green-900">Full Name</th>
-                      <th className="py-2 px-4 text-left text-green-900">Student ID</th>
-                      <th className="py-2 px-4 text-left text-green-900">Actions</th>
+                      <th className="py-2 px-4 text-left text-mubito-navy-dark">Full Name</th>
+                      <th className="py-2 px-4 text-left text-mubito-navy-dark">Student ID</th>
+                      <th className="py-2 px-4 text-left text-mubito-navy-dark">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -609,14 +609,14 @@ export default function AdminDashboard() {
                         <td className="py-2 px-4">{s.student_id}</td>
                         <td className="py-2 px-4">
                           <button className="text-blue-600 hover:underline mr-2" onClick={() => handleEditStudent(s)}>Edit</button>
-                          <button className="text-green-600 hover:underline mr-2" onClick={() => handlePromoteStudent(s.student_id)}>Promote</button>
+                          <button className="text-mubito-navy hover:underline mr-2" onClick={() => handlePromoteStudent(s.student_id)}>Promote</button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
                 </div>
-                {promotionMsg && <div className="mt-2 text-sm text-green-700">{promotionMsg}</div>}
+                {promotionMsg && <div className="mt-2 text-sm text-mubito-navy">{promotionMsg}</div>}
               </>
             )}
           </div>
@@ -625,18 +625,18 @@ export default function AdminDashboard() {
         return (
           <>
             <div className="bg-white rounded shadow p-6 mb-8 max-w-xl">
-              <h3 className="font-bold mb-2 text-green-700">Upload Result for JSS2B - 2nd Term 2024/25</h3>
+              <h3 className="font-bold mb-2 text-mubito-navy">Upload Result for JSS2B - 2nd Term 2024/25</h3>
               <div className="flex items-center gap-2 mb-4">
                 <select name="class" value={form.class} onChange={handleFormChange} className="border p-2 rounded w-full md:w-48" required>
                   <option value="">Select Class</option>
                   {classes.map(c => <option key={c.name} value={c.name}>{c.name}</option>)}
                 </select>
                 <input type="file" accept=".csv" onChange={e => setCsvFile(e.target.files[0])} className="border p-2 rounded w-full" />
-                <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded w-full md:w-auto" onClick={handleUpload}>Upload CSV</button>
+                <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white p-2 rounded w-full md:w-auto" onClick={handleUpload}>Upload CSV</button>
               </div>
             </div>
             <div className="bg-white rounded shadow p-6 max-w-xl">
-              <h3 className="font-bold mb-2 text-green-700">Manual Result Entry</h3>
+              <h3 className="font-bold mb-2 text-mubito-navy">Manual Result Entry</h3>
               <form onSubmit={handleFormSubmit} className="flex flex-col gap-2">
                 <select name="class" value={form.class} onChange={handleFormChange} className="border p-2 rounded w-full" required>
                   <option value="">Select Class</option>
@@ -665,21 +665,21 @@ export default function AdminDashboard() {
                 <input type="text" name="grade" value={form.grade} onChange={handleFormChange} placeholder="Grade (A/B/C/D/F)" className="w-full p-2 border rounded" required />
                 <input type="text" name="term" value={form.term} onChange={handleFormChange} placeholder="Term" className="w-full p-2 border rounded" />
                 <input type="text" name="session" value={form.session} onChange={handleFormChange} placeholder="Session" className="w-full p-2 border rounded" />
-                <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add Result</button>
+                <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add Result</button>
               </form>
-              {message && <div className="mt-2 text-sm text-green-700">{message}</div>}
+              {message && <div className="mt-2 text-sm text-mubito-navy">{message}</div>}
             </div>
           </>
         );
       case 'subjects':
         return (
           <div className="bg-white rounded shadow p-6 max-w-xl">
-            <h3 className="font-bold mb-2 text-green-700">Manage Subjects</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">Manage Subjects</h3>
             <form onSubmit={handleAddSubject} className="flex gap-2 mb-4">
               <input type="text" value={newSubject} onChange={e => setNewSubject(e.target.value)} placeholder="New subject name" className="border p-2 rounded w-full" />
-              <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
+              <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
             </form>
-            {subjectMsg && <div className="mb-2 text-green-700">{subjectMsg}</div>}
+            {subjectMsg && <div className="mb-2 text-mubito-navy">{subjectMsg}</div>}
             <div className="overflow-x-auto">
             <ul className="divide-y">
               {subjects.map(s => (
@@ -695,12 +695,12 @@ export default function AdminDashboard() {
       case 'sessions':
         return (
           <div className="bg-white rounded shadow p-6 max-w-xl">
-            <h3 className="font-bold mb-2 text-green-700">Manage Sessions/Terms</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">Manage Sessions/Terms</h3>
             <form onSubmit={handleAddSession} className="flex gap-2 mb-4">
               <input type="text" value={newSession} onChange={e => setNewSession(e.target.value)} placeholder="New session name" className="border p-2 rounded w-full" />
-              <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
+              <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
             </form>
-            {sessionMsg && <div className="mb-2 text-green-700">{sessionMsg}</div>}
+            {sessionMsg && <div className="mb-2 text-mubito-navy">{sessionMsg}</div>}
             <div className="overflow-x-auto">
             <ul className="divide-y">
               {sessions.map(s => (
@@ -716,12 +716,12 @@ export default function AdminDashboard() {
       case 'classes':
         return (
           <div className="bg-white rounded shadow p-6 max-w-xl">
-            <h3 className="font-bold mb-2 text-green-700">Manage Classes</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">Manage Classes</h3>
             <form onSubmit={handleAddClass} className="flex gap-2 mb-4">
               <input type="text" value={newClass} onChange={e => setNewClass(e.target.value)} placeholder="New class name" className="border p-2 rounded w-full" />
-              <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
+              <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">Add</button>
             </form>
-            {classMsg && <div className="mb-2 text-green-700">{classMsg}</div>}
+            {classMsg && <div className="mb-2 text-mubito-navy">{classMsg}</div>}
             <div className="overflow-x-auto">
             <ul className="divide-y">
               {classes.map(c => (
@@ -737,7 +737,7 @@ export default function AdminDashboard() {
       case 'history':
         return (
           <div className="bg-white rounded shadow p-6 max-w-xl">
-            <h3 className="font-bold mb-2 text-green-700">View Result History</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">View Result History</h3>
             <div className="flex gap-2 mb-4">
               <input type="text" name="student_id" value={historyFilters.student_id} onChange={handleHistoryFilterChange} placeholder="Student ID" className="border p-2 rounded w-full md:w-32" />
               <input type="text" name="class" value={historyFilters.class} onChange={handleHistoryFilterChange} placeholder="Class" className="border p-2 rounded w-full md:w-24" />
@@ -745,12 +745,12 @@ export default function AdminDashboard() {
               <input type="text" name="session" value={historyFilters.session} onChange={handleHistoryFilterChange} placeholder="Session" className="border p-2 rounded w-full md:w-24" />
             </div>
             <div className="overflow-x-auto">
-            <table className="min-w-[600px] bg-green-50 rounded">
-              <thead className="bg-green-200">
+            <table className="min-w-[600px] bg-gray-50 rounded">
+              <thead className="bg-mubito-navy-light bg-opacity-20">
                 <tr>
-                  <th className="py-2 px-4 text-left text-green-900">Student ID</th>
-                    <th className="py-2 px-4 text-left text-green-900">Class(es)</th>
-                    <th className="py-2 px-4 text-left text-green-900">See More</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Student ID</th>
+                    <th className="py-2 px-4 text-left text-mubito-navy-dark">Class(es)</th>
+                    <th className="py-2 px-4 text-left text-mubito-navy-dark">See More</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -771,21 +771,21 @@ export default function AdminDashboard() {
               <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
                 <div className="bg-white rounded shadow-lg p-6 max-w-2xl w-full relative max-h-[90vh] overflow-y-auto">
                   <button className="absolute top-2 right-2 text-2xl" onClick={() => setHistoryModalOpen(false)}>&times;</button>
-                  <h4 className="font-bold mb-4 text-green-700">Results for {historyModalStudent.student_id}</h4>
+                  <h4 className="font-bold mb-4 text-mubito-navy">Results for {historyModalStudent.student_id}</h4>
                   <div className="overflow-x-auto">
-                    <table className="min-w-full bg-green-50 rounded">
-                      <thead className="bg-green-200">
+                    <table className="min-w-full bg-gray-50 rounded">
+                      <thead className="bg-mubito-navy-light bg-opacity-20">
                         <tr>
-                  <th className="py-2 px-4 text-left text-green-900">Subject</th>
-                  <th className="py-2 px-4 text-left text-green-900">CA1</th>
-                  <th className="py-2 px-4 text-left text-green-900">CA2</th>
-                  <th className="py-2 px-4 text-left text-green-900">Exam</th>
-                  <th className="py-2 px-4 text-left text-green-900">Total</th>
-                  <th className="py-2 px-4 text-left text-green-900">Grade</th>
-                  <th className="py-2 px-4 text-left text-green-900">Remark</th>
-                  <th className="py-2 px-4 text-left text-green-900">Term</th>
-                  <th className="py-2 px-4 text-left text-green-900">Session</th>
-                          <th className="py-2 px-4 text-left text-green-900">Class</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Subject</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">CA1</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">CA2</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Exam</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Total</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Grade</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Remark</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Term</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Session</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Class</th>
                 </tr>
               </thead>
               <tbody>
@@ -814,7 +814,7 @@ export default function AdminDashboard() {
       case 'manageTeachers':
         return (
           <div className="bg-white rounded shadow p-6 max-w-2xl">
-            <h3 className="font-bold mb-2 text-green-700">Manage Teachers</h3>
+            <h3 className="font-bold mb-2 text-mubito-navy">Manage Teachers</h3>
             <form onSubmit={handleAddTeacher} className="flex gap-2 mb-4 flex-wrap">
               <input type="text" name="fullname" value={teacherForm.fullname} onChange={handleTeacherFormChange} placeholder="Full Name" className="border p-2 rounded w-full md:w-48" required />
               <input type="email" name="email" value={teacherForm.email} onChange={handleTeacherFormChange} placeholder="Email" className="border p-2 rounded w-full md:w-48" required />
@@ -826,17 +826,17 @@ export default function AdminDashboard() {
                     <option key={s.id || s.name} value={s.name}>{s.name}</option>
                   ))}
                 </select>
-                <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto">{teacherForm.editId ? 'Update' : 'Add'}</button>
+                <button type="submit" className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto">{teacherForm.editId ? 'Update' : 'Add'}</button>
               </div>
-              {teacherMsg && <span className="text-green-700 ml-2">{teacherMsg}</span>}
+              {teacherMsg && <span className="text-mubito-navy ml-2">{teacherMsg}</span>}
             </form>
             <div className="overflow-x-auto">
-            <table className="min-w-[600px] bg-green-50 rounded mb-4">
-              <thead className="bg-green-200">
+            <table className="min-w-[600px] bg-gray-50 rounded mb-4">
+              <thead className="bg-mubito-navy-light bg-opacity-20">
                 <tr>
-                  <th className="py-2 px-4 text-left text-green-900">Full Name</th>
-                  <th className="py-2 px-4 text-left text-green-900">Email</th>
-                  <th className="py-2 px-4 text-left text-green-900">Actions</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Full Name</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Email</th>
+                  <th className="py-2 px-4 text-left text-mubito-navy-dark">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -846,7 +846,7 @@ export default function AdminDashboard() {
                     <td className="py-2 px-4">{t.email}</td>
                     <td className="py-2 px-4">
                       <button className="text-blue-600 hover:underline mr-2" onClick={() => handleEditTeacher(t)}>Edit</button>
-                      <button className="text-green-600 hover:underline mr-2" onClick={() => handleAssignClasses(t)}>Assign Classes</button>
+                      <button className="text-mubito-navy hover:underline mr-2" onClick={() => handleAssignClasses(t)}>Assign Classes</button>
                       <button className="text-red-600 hover:underline" onClick={() => handleDeleteTeacher(t.id)}>Delete</button>
                     </td>
                   </tr>
@@ -855,7 +855,7 @@ export default function AdminDashboard() {
             </table>
             </div>
             {assignTeacherId && (
-              <div className="mb-4 p-4 border rounded bg-green-50">
+              <div className="mb-4 p-4 border rounded bg-gray-50">
                 <h4 className="font-bold mb-2">Assign Classes</h4>
                 <div className="flex flex-wrap gap-4 mb-2">
                   {classes.map(c => (
@@ -865,7 +865,7 @@ export default function AdminDashboard() {
                     </label>
                   ))}
                 </div>
-                <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold w-full md:w-auto" onClick={handleSaveAssignedClasses}>Save</button>
+                <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold w-full md:w-auto" onClick={handleSaveAssignedClasses}>Save</button>
                 <button className="ml-2 text-red-600 hover:underline" onClick={() => setAssignTeacherId(null)}>Cancel</button>
               </div>
             )}
@@ -879,27 +879,27 @@ export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-green-50 flex-col md:flex-row">
+    <div className="flex min-h-screen bg-gray-50 flex-col md:flex-row">
       {/* Hamburger for mobile */}
-      <div className="md:hidden flex items-center justify-between bg-green-700 text-white p-4 shadow-lg">
+      <div className="md:hidden flex items-center justify-between bg-mubito-maroon text-white p-4 shadow-lg">
         <div className="flex items-center gap-2">
-          <div className="bg-white text-green-700 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-green-300">B</div>
+          <div className="bg-white text-mubito-navy rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-mubito-maroon">B</div>
           <span className="text-xl font-extrabold tracking-wide">Mubito School</span>
         </div>
         <button onClick={() => setSidebarOpen(true)} className="text-3xl focus:outline-none">&#9776;</button>
       </div>
       {/* Sidebar */}
-      <nav className={`fixed md:static top-0 left-0 h-full z-40 bg-green-700 text-white min-h-screen p-4 md:p-6 flex flex-col justify-between shadow-lg w-64 transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`} style={{ maxWidth: '100vw' }}>
+      <nav className={`fixed md:static top-0 left-0 h-full z-40 bg-mubito-maroon text-white min-h-screen p-4 md:p-6 flex flex-col justify-between shadow-lg w-64 transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`} style={{ maxWidth: '100vw' }}>
         <div>
           <div className="mb-4 md:mb-8 flex items-center gap-2">
-            <div className="bg-white text-green-700 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-green-300">B</div>
+            <div className="bg-white text-mubito-navy rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-mubito-maroon">B</div>
             <span className="text-xl md:text-2xl font-extrabold tracking-wide">Mubito School</span>
           </div>
           <ul className="space-y-2 md:space-y-4 flex flex-row md:flex-col flex-wrap md:flex-nowrap">
             {NAV_ITEMS.map(item => (
               <li
                 key={item.key}
-                className={`font-semibold cursor-pointer px-2 py-1 rounded ${activePanel === item.key ? 'bg-green-900 text-green-200' : 'hover:text-green-200'}`}
+                className={`font-semibold cursor-pointer px-2 py-1 rounded ${activePanel === item.key ? 'bg-mubito-maroon text-white' : 'hover:text-gray-200'}`}
                 onClick={() => { setActivePanel(item.key); setSidebarOpen(false); }}
               >
                 {item.label}
@@ -908,7 +908,7 @@ export default function AdminDashboard() {
           </ul>
         </div>
         <div className="w-full md:w-auto flex justify-end md:justify-start">
-          <button className="w-full bg-green-600 hover:bg-green-800 py-2 rounded text-white font-semibold mt-2 md:mt-8" onClick={() => { localStorage.clear(); window.location = '/'; }}>Logout</button>
+          <button className="w-full bg-mubito-maroon hover:bg-mubito-maroon-light py-2 rounded text-white font-semibold mt-2 md:mt-8" onClick={() => { localStorage.clear(); window.location = '/'; }}>Logout</button>
         </div>
         {/* Close button for mobile */}
         <button onClick={() => setSidebarOpen(false)} className="md:hidden absolute top-4 right-4 text-3xl focus:outline-none">&times;</button>
@@ -917,8 +917,8 @@ export default function AdminDashboard() {
       {sidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden" onClick={() => setSidebarOpen(false)}></div>}
       {/* Main Content */}
       <main className="flex-1 p-2 md:p-10 w-full">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-green-800 mb-4 md:mb-6 flex items-center gap-2">
-          <span className="bg-green-100 text-green-700 px-2 md:px-3 py-1 rounded-full font-bold text-lg">Admin</span>
+        <h2 className="text-2xl md:text-3xl font-extrabold text-mubito-navy mb-4 md:mb-6 flex items-center gap-2">
+          <span className="bg-gray-100 text-mubito-navy px-2 md:px-3 py-1 rounded-full font-bold text-lg">Admin</span>
           Dashboard
         </h2>
         <div className="overflow-x-auto">
@@ -928,7 +928,7 @@ export default function AdminDashboard() {
           <h2 className="text-xl font-bold mb-4">Pending Results Approval</h2>
           <div className="bg-white rounded shadow p-4 mb-8">
             {pendingStudents.length === 0 ? (
-              <div className="text-green-700">No pending results to approve.</div>
+              <div className="text-mubito-navy">No pending results to approve.</div>
             ) : (
               <>
               <table className="min-w-full">
@@ -958,7 +958,7 @@ export default function AdminDashboard() {
                           View
                         </button>
                         <button
-                          className="bg-green-600 hover:bg-green-800 text-white px-3 py-1 rounded"
+                          className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-3 py-1 rounded"
                           onClick={() => approveResults(s.student_id, s.term, s.session)}
                         >
                           Approve Results
@@ -969,7 +969,7 @@ export default function AdminDashboard() {
                 </tbody>
               </table>
               <div className="mt-3">
-                <button className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded mr-2" onClick={handleApproveSelected} disabled={selectedPending.length === 0}>Approve Selected</button>
+                <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-3 py-1 rounded mr-2" onClick={handleApproveSelected} disabled={selectedPending.length === 0}>Approve Selected</button>
                 <span className="text-sm text-gray-600">{selectedPending.length} selected</span>
               </div>
               </>
@@ -981,7 +981,7 @@ export default function AdminDashboard() {
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 relative w-full max-w-xl">
               <button className="absolute top-2 right-2 text-2xl" onClick={() => setPendingModalOpen(false)}>&times;</button>
-              <h4 className="font-bold mb-4 text-green-700">Pending Results for {pendingModalStudent?.fullname} ({pendingModalStudent?.student_id})</h4>
+              <h4 className="font-bold mb-4 text-mubito-navy">Pending Results for {pendingModalStudent?.fullname} ({pendingModalStudent?.student_id})</h4>
               {pendingModalResults.length === 0 ? (
                 <div className="text-red-600">No results found for this student/term/session.</div>
               ) : (
@@ -1005,7 +1005,7 @@ export default function AdminDashboard() {
                 </table>
               )}
               <button
-                className="bg-green-600 hover:bg-green-800 text-white px-4 py-2 rounded"
+                className="bg-mubito-maroon hover:bg-mubito-maroon-light text-white px-4 py-2 rounded"
                 onClick={() => approveResults(pendingModalStudent.student_id, pendingModalStudent.term, pendingModalStudent.session)}
               >
                 Approve Results
@@ -1019,7 +1019,7 @@ export default function AdminDashboard() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50"
+          className="fixed bottom-8 right-8 bg-mubito-maroon hover:bg-mubito-maroon text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50"
           aria-label="Scroll to top"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

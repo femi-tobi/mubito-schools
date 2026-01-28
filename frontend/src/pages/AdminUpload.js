@@ -54,9 +54,9 @@ export default function AdminUpload() {
         <input value={className} onChange={e => setClassName(e.target.value)} className="border p-2 rounded" placeholder="e.g., JSS1" />
         <label>CSV File</label>
         <input type="file" accept=".csv" onChange={e => setFile(e.target.files[0])} />
-        <button className="bg-green-600 text-white p-2 rounded mt-2" type="submit">Upload</button>
+        <button className="bg-mubito-maroon text-white p-2 rounded mt-2" type="submit">Upload</button>
       </form>
-      {message && <div className="mt-2 text-sm text-green-700">{message}</div>}
+      {message && <div className="mt-2 text-sm text-mubito-navy">{message}</div>}
     </div>
   );
 }

@@ -395,35 +395,35 @@ export default function TeacherDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-green-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header Bar */}
-      <header className="bg-green-700 text-white flex items-center justify-between px-8 py-4 shadow">
+      <header className="bg-mubito-maroon text-white flex items-center justify-between px-8 py-4 shadow">
         <div className="flex items-center gap-4">
-          <div className="bg-white text-green-700 rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold border-2 border-green-300">
+          <div className="bg-white text-mubito-navy rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold border-2 border-mubito-maroon">
             {teacher.fullname ? teacher.fullname.split(' ').map(n => n[0]).join('').toUpperCase() : ''}
           </div>
           <div>
             <div className="font-bold text-lg">Welcome, {teacher.fullname}</div>
-            <div className="text-sm text-green-200">Mubito School Teacher</div>
+            <div className="text-sm text-gray-200">Mubito School Teacher</div>
           </div>
         </div>
-        <button className="bg-green-600 hover:bg-green-800 px-4 py-2 rounded text-white font-semibold" onClick={() => { localStorage.clear(); window.location = '/teacher-login'; }}>Logout</button>
+        <button className="bg-mubito-maroon hover:bg-mubito-maroon-light px-4 py-2 rounded text-white font-semibold" onClick={() => { localStorage.clear(); window.location = '/teacher-login'; }}>Logout</button>
       </header>
       <main className="max-w-3xl mx-auto mt-8 p-4">
         {/* Class selection and main dashboard content here */}
         <div className="mb-6">
-          <label className="font-semibold text-green-800">Select Class:</label>
+          <label className="font-semibold text-mubito-navy">Select Class:</label>
           <select
             value={selectedClass}
             onChange={e => setSelectedClass(e.target.value)}
-            className="p-2 rounded border-green-300 border focus:outline-none ml-2"
+            className="p-2 rounded border-mubito-maroon border focus:outline-none ml-2"
           >
             <option value="">-- Select --</option>
             {classes.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
           </select>
         </div>
         {!selectedClass && (
-          <div className="text-center text-green-700 font-semibold mt-8">
+          <div className="text-center text-mubito-navy font-semibold mt-8">
             Please select a class to view and enter results.
           </div>
         )}
@@ -432,13 +432,13 @@ export default function TeacherDashboard() {
             {/* Tab Navigation */}
             <div className="flex gap-4 mb-6">
               <button
-                className={`px-4 py-2 rounded font-semibold ${activeTab === 'enter' ? 'bg-green-700 text-white' : 'bg-green-100 text-green-800'}`}
+                className={`px-4 py-2 rounded font-semibold ${activeTab === 'enter' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
                 onClick={() => setActiveTab('enter')}
               >
                 Enter Results
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold ${activeTab === 'history' ? 'bg-green-700 text-white' : 'bg-green-100 text-green-800'}`}
+                className={`px-4 py-2 rounded font-semibold ${activeTab === 'history' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
                 onClick={() => setActiveTab('history')}
               >
                 View Result History
@@ -448,7 +448,7 @@ export default function TeacherDashboard() {
             {activeTab === 'enter' && (
               <div className="overflow-x-auto">
                 <div className="bg-white rounded shadow p-2 md:p-6 mb-4 md:mb-8">
-                  <h3 className="font-bold mb-2 text-green-700 text-base md:text-lg">Students in {selectedClass}</h3>
+                  <h3 className="font-bold mb-2 text-mubito-navy text-base md:text-lg">Students in {selectedClass}</h3>
                   <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-4">
                     <select value={term} onChange={e => setTerm(e.target.value)} className="border p-2 rounded w-full md:w-32">
                       <option value="">Select Term</option>
@@ -460,13 +460,13 @@ export default function TeacherDashboard() {
                     </select>
                   </div>
                   <table className="min-w-[600px] w-full">
-                    <thead className="bg-green-200">
+                    <thead className="bg-mubito-navy-light bg-opacity-20">
                       <tr>
-                        <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Full Name</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">CA Score</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Exam Score</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Total</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Action</th>
+                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Full Name</th>
+                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA Score</th>
+                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Exam Score</th>
+                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Total</th>
+                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -500,7 +500,7 @@ export default function TeacherDashboard() {
                                 readOnly
                                 className="border p-1 rounded w-full md:w-20 bg-gray-100"
                               />
-                              <div className="text-sm text-green-800 mt-1">{gradeScores[s.student_id] || ''} {total !== '' ? `(${total})` : ''}</div>
+                              <div className="text-sm text-mubito-navy mt-1">{gradeScores[s.student_id] || ''} {total !== '' ? `(${total})` : ''}</div>
                             </td>
                             <td className="py-2 px-2 md:px-4">
                               <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded w-full md:w-auto" onClick={() => openStudentModal(s)}>View/Add Results</button>
@@ -519,18 +519,18 @@ export default function TeacherDashboard() {
                   className="bg-white rounded shadow p-2 md:p-6 max-w-3xl w-full mx-auto mt-10 md:mt-20 outline-none overflow-auto max-h-[80vh]"
                   overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center"
                 >
-                  <h3 className="font-bold mb-2 text-green-700 text-base md:text-lg">Results for {modalStudent?.fullname}</h3>
+                  <h3 className="font-bold mb-2 text-mubito-navy text-base md:text-lg">Results for {modalStudent?.fullname}</h3>
                   <div className="mb-4 overflow-x-auto">
                     <table className="min-w-[400px] w-full mb-2">
-                      <thead className="bg-green-200">
+                      <thead className="bg-mubito-navy-light bg-opacity-20">
                         <tr>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Subject</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">CA1</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">CA2</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Exam</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Total</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Grade</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Remark</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Subject</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA1</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA2</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Exam</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Total</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Grade</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Remark</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -579,16 +579,16 @@ export default function TeacherDashboard() {
                   <div className="mb-4 overflow-x-auto">
                     <button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mb-2 w-full md:w-auto" onClick={handleAddBatchRow}>+ Add Subject Row</button>
                     <table className="min-w-[600px] w-full">
-                      <thead className="bg-green-100">
+                      <thead className="bg-gray-100">
                         <tr>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Subject</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">CA1</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">CA2</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Exam</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Total</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Grade</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Remark</th>
-                          <th className="py-2 px-2 md:px-4 text-left text-green-900 text-xs md:text-base">Action</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Subject</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA1</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA2</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Exam</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Total</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Grade</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Remark</th>
+                          <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -628,20 +628,20 @@ export default function TeacherDashboard() {
                       </tbody>
                     </table>
                     {batchResults.length > 0 && (
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold mt-2 w-full md:w-auto" onClick={handleSubmitBatchResults}>Submit All</button>
+                      <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold mt-2 w-full md:w-auto" onClick={handleSubmitBatchResults}>Submit All</button>
                     )}
                   </div>
-                  {modalMsg && <div className="text-green-700 mb-2">{modalMsg}</div>}
+                  {modalMsg && <div className="text-mubito-navy mb-2">{modalMsg}</div>}
                   <div className="mt-6">
-                    <label className="font-semibold text-green-800">Report Card Remark:</label>
+                    <label className="font-semibold text-mubito-navy">Report Card Remark:</label>
                     <textarea
                       value={remark}
                       onChange={e => setRemark(e.target.value)}
                       className="border p-2 rounded w-full min-h-[60px] mt-2"
                       placeholder="Enter overall remark for this student for this term/session..."
                     />
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold mt-2" onClick={handleSaveRemark}>Save Remark</button>
-                    {remarkMsg && <div className="text-green-700 mt-1">{remarkMsg}</div>}
+                    <button className="bg-mubito-maroon hover:bg-mubito-maroon text-white px-4 py-2 rounded font-semibold mt-2" onClick={handleSaveRemark}>Save Remark</button>
+                    {remarkMsg && <div className="text-mubito-navy mt-1">{remarkMsg}</div>}
                   </div>
                   <button className="mt-2 text-red-600 hover:underline w-full md:w-auto" onClick={closeStudentModal}>Close</button>
                 </Modal>
@@ -650,7 +650,7 @@ export default function TeacherDashboard() {
             {/* Result History Panel */}
             {activeTab === 'history' && (
               <div className="bg-white rounded shadow p-6 mt-4">
-                <h3 className="font-bold mb-2 text-green-700">Result History for {selectedClass}</h3>
+                <h3 className="font-bold mb-2 text-mubito-navy">Result History for {selectedClass}</h3>
                 <div className="flex gap-2 mb-4 flex-wrap">
                   <input type="text" name="student_id" value={historyFilters.student_id} onChange={handleHistoryFilterChange} placeholder="Student ID" className="border p-2 rounded w-32" />
                   <input type="text" name="subject" value={historyFilters.subject} onChange={handleHistoryFilterChange} placeholder="Subject" className="border p-2 rounded w-32" />
@@ -665,16 +665,16 @@ export default function TeacherDashboard() {
                   acc[r.student_id].push(r);
                   return acc;
                 }, {})).map(([student_id, results]) => (
-                  <div key={student_id} className="mb-6 border border-green-300 rounded p-4">
-                    <h4 className="font-bold text-green-800 mb-3">Student ID: {student_id} ({results.length} {results.length === 1 ? 'result' : 'results'})</h4>
-                    <table className="min-w-[500px] w-full bg-green-50 rounded">
-                      <thead className="bg-green-200">
+                  <div key={student_id} className="mb-6 border border-mubito-maroon rounded p-4">
+                    <h4 className="font-bold text-mubito-navy mb-3">Student ID: {student_id} ({results.length} {results.length === 1 ? 'result' : 'results'})</h4>
+                    <table className="min-w-[500px] w-full bg-gray-50 rounded">
+                      <thead className="bg-mubito-navy-light bg-opacity-20">
                         <tr>
-                          <th className="py-2 px-4 text-left text-green-900">Subject</th>
-                          <th className="py-2 px-4 text-left text-green-900">Score</th>
-                          <th className="py-2 px-4 text-left text-green-900">Grade</th>
-                          <th className="py-2 px-4 text-left text-green-900">Term</th>
-                          <th className="py-2 px-4 text-left text-green-900">Session</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Subject</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Score</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Grade</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Term</th>
+                          <th className="py-2 px-4 text-left text-mubito-navy-dark">Session</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -701,7 +701,7 @@ export default function TeacherDashboard() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50"
+          className="fixed bottom-8 right-8 bg-mubito-maroon hover:bg-mubito-maroon text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50"
           aria-label="Scroll to top"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
