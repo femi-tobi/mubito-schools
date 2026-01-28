@@ -397,26 +397,28 @@ export default function TeacherDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header Bar */}
-      <header className="bg-mubito-maroon text-white flex items-center justify-between px-8 py-4 shadow">
-        <div className="flex items-center gap-4">
-          <div className="bg-white text-mubito-navy rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold border-2 border-mubito-maroon">
-            {teacher.fullname ? teacher.fullname.split(' ').map(n => n[0]).join('').toUpperCase() : ''}
+      <header className="bg-mubito-maroon text-white px-4 md:px-8 py-4 shadow">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="bg-white text-mubito-navy rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-lg md:text-xl font-bold border-2 border-mubito-maroon flex-shrink-0">
+              {teacher.fullname ? teacher.fullname.split(' ').map(n => n[0]).join('').toUpperCase() : ''}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="font-bold text-base md:text-lg">Welcome, {teacher.fullname}</div>
+              <div className="text-xs md:text-sm text-gray-200">Mubito School Teacher</div>
+            </div>
           </div>
-          <div>
-            <div className="font-bold text-lg">Welcome, {teacher.fullname}</div>
-            <div className="text-sm text-gray-200">Mubito School Teacher</div>
-          </div>
+          <button className="bg-mubito-maroon hover:bg-mubito-maroon-light px-4 py-2 rounded text-white font-semibold min-h-[44px] text-sm md:text-base w-full sm:w-auto" onClick={() => { localStorage.clear(); window.location = '/teacher-login'; }}>Logout</button>
         </div>
-        <button className="bg-mubito-maroon hover:bg-mubito-maroon-light px-4 py-2 rounded text-white font-semibold" onClick={() => { localStorage.clear(); window.location = '/teacher-login'; }}>Logout</button>
       </header>
-      <main className="max-w-3xl mx-auto mt-8 p-4">
+      <main className="max-w-3xl mx-auto mt-4 md:mt-8 p-4">
         {/* Class selection and main dashboard content here */}
         <div className="mb-6">
-          <label className="font-semibold text-mubito-navy">Select Class:</label>
+          <label className="font-semibold text-mubito-navy text-sm md:text-base block mb-2 sm:inline sm:mb-0">Select Class:</label>
           <select
             value={selectedClass}
             onChange={e => setSelectedClass(e.target.value)}
-            className="p-2 rounded border-mubito-maroon border focus:outline-none ml-2"
+            className="p-2 rounded border-mubito-maroon border focus:outline-none ml-0 sm:ml-2 w-full sm:w-auto min-h-[44px]"
           >
             <option value="">-- Select --</option>
             {classes.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
@@ -430,15 +432,15 @@ export default function TeacherDashboard() {
         {selectedClass && (
           <>
             {/* Tab Navigation */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-6">
               <button
-                className={`px-4 py-2 rounded font-semibold ${activeTab === 'enter' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
+                className={`px-4 py-2 rounded font-semibold min-h-[44px] text-sm md:text-base ${activeTab === 'enter' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
                 onClick={() => setActiveTab('enter')}
               >
                 Enter Results
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold ${activeTab === 'history' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
+                className={`px-4 py-2 rounded font-semibold min-h-[44px] text-sm md:text-base ${activeTab === 'history' ? 'bg-mubito-maroon text-white' : 'bg-gray-100 text-mubito-navy'}`}
                 onClick={() => setActiveTab('history')}
               >
                 View Result History
@@ -446,78 +448,84 @@ export default function TeacherDashboard() {
             </div>
             {/* Enter Results Panel */}
             {activeTab === 'enter' && (
-              <div className="overflow-x-auto">
-                <div className="bg-white rounded shadow p-2 md:p-6 mb-4 md:mb-8">
-                  <h3 className="font-bold mb-2 text-mubito-navy text-base md:text-lg">Students in {selectedClass}</h3>
+              <div>
+                <div className="bg-white rounded shadow p-4 md:p-6 mb-4 md:mb-8">
+                  <h3 className="font-bold mb-3 text-mubito-navy text-sm md:text-base">Students in {selectedClass}</h3>
                   <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-4">
-                    <select value={term} onChange={e => setTerm(e.target.value)} className="border p-2 rounded w-full md:w-32">
+                    <select value={term} onChange={e => setTerm(e.target.value)} className="border p-2 rounded w-full md:w-32 min-h-[44px]">
                       <option value="">Select Term</option>
                       {TERMS.map(t => <option key={t} value={t}>{t}</option>)}
                     </select>
-                    <select value={session} onChange={e => setSession(e.target.value)} className="border p-2 rounded w-full md:w-32">
+                    <select value={session} onChange={e => setSession(e.target.value)} className="border p-2 rounded w-full md:w-32 min-h-[44px]">
                       <option value="">Select Session</option>
                       {sessions.map(s => <option key={s.id || s.name} value={s.name}>{s.name}</option>)}
                     </select>
                   </div>
-                  <table className="min-w-[600px] w-full">
-                    <thead className="bg-mubito-navy-light bg-opacity-20">
-                      <tr>
-                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Full Name</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">CA Score</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Exam Score</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Total</th>
-                        <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-base">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {students.map(s => {
-                        const ca = caScores[s.student_id] || '';
-                        const exam = examScores[s.student_id] || '';
-                        const total = ca && exam ? Number(ca) + Number(exam) : '';
-                        return (
-                          <tr key={s.id}>
-                            <td className="py-2 px-2 md:px-4">{s.fullname}</td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input
-                                type="number"
-                                value={ca}
-                                onChange={e => handleCaChange(s.student_id, e.target.value)}
-                                className="border p-1 rounded w-full md:w-20"
-                              />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input
-                                type="number"
-                                value={exam}
-                                onChange={e => handleExamChange(s.student_id, e.target.value)}
-                                className="border p-1 rounded w-full md:w-20"
-                              />
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <input
-                                type="number"
-                                value={total}
-                                readOnly
-                                className="border p-1 rounded w-full md:w-20 bg-gray-100"
-                              />
-                              <div className="text-sm text-mubito-navy mt-1">{gradeScores[s.student_id] || ''} {total !== '' ? `(${total})` : ''}</div>
-                            </td>
-                            <td className="py-2 px-2 md:px-4">
-                              <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded w-full md:w-auto" onClick={() => openStudentModal(s)}>View/Add Results</button>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                  <div className="overflow-x-auto -mx-4 md:mx-0">
+                    <div className="inline-block min-w-full align-middle">
+                      <div className="overflow-hidden">
+                        <table className="min-w-full">
+                          <thead className="bg-mubito-navy-light bg-opacity-20">
+                            <tr>
+                              <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Full Name</th>
+                              <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">CA Score</th>
+                              <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Exam Score</th>
+                              <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Total</th>
+                              <th className="py-2 px-2 md:px-4 text-left text-mubito-navy-dark text-xs md:text-sm">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {students.map(s => {
+                              const ca = caScores[s.student_id] || '';
+                              const exam = examScores[s.student_id] || '';
+                              const total = ca && exam ? Number(ca) + Number(exam) : '';
+                              return (
+                                <tr key={s.id}>
+                                  <td className="py-2 px-2 md:px-4 text-xs md:text-sm">{s.fullname}</td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input
+                                      type="number"
+                                      value={ca}
+                                      onChange={e => handleCaChange(s.student_id, e.target.value)}
+                                      className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm"
+                                    />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input
+                                      type="number"
+                                      value={exam}
+                                      onChange={e => handleExamChange(s.student_id, e.target.value)}
+                                      className="border p-1 rounded w-16 md:w-20 text-xs md:text-sm"
+                                    />
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <input
+                                      type="number"
+                                      value={total}
+                                      readOnly
+                                      className="border p-1 rounded w-16 md:w-20 bg-gray-100 text-xs md:text-sm"
+                                    />
+                                    <div className="text-xs text-mubito-navy mt-1">{gradeScores[s.student_id] || ''} {total !== '' ? `(${total})` : ''}</div>
+                                  </td>
+                                  <td className="py-2 px-2 md:px-4">
+                                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs md:text-sm whitespace-nowrap" onClick={() => openStudentModal(s)}>View/Add</button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <Modal
                   isOpen={modalOpen}
                   onRequestClose={closeStudentModal}
                   contentLabel="Student Results Modal"
                   ariaHideApp={false}
-                  className="bg-white rounded shadow p-2 md:p-6 max-w-3xl w-full mx-auto mt-10 md:mt-20 outline-none overflow-auto max-h-[80vh]"
-                  overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center"
+                  className="bg-white rounded shadow p-4 md:p-6 max-w-full md:max-w-3xl w-full mx-4 md:mx-auto mt-4 md:mt-20 outline-none overflow-auto max-h-[90vh]"
+                  overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex items-start md:items-center justify-center overflow-y-auto py-4"
                 >
                   <h3 className="font-bold mb-2 text-mubito-navy text-base md:text-lg">Results for {modalStudent?.fullname}</h3>
                   <div className="mb-4 overflow-x-auto">
@@ -649,14 +657,14 @@ export default function TeacherDashboard() {
             )}
             {/* Result History Panel */}
             {activeTab === 'history' && (
-              <div className="bg-white rounded shadow p-6 mt-4">
-                <h3 className="font-bold mb-2 text-mubito-navy">Result History for {selectedClass}</h3>
+              <div className="bg-white rounded shadow p-4 md:p-6 mt-4">
+                <h3 className="font-bold mb-3 text-mubito-navy text-sm md:text-base">Result History for {selectedClass}</h3>
                 <div className="flex gap-2 mb-4 flex-wrap">
-                  <input type="text" name="student_id" value={historyFilters.student_id} onChange={handleHistoryFilterChange} placeholder="Student ID" className="border p-2 rounded w-32" />
-                  <input type="text" name="subject" value={historyFilters.subject} onChange={handleHistoryFilterChange} placeholder="Subject" className="border p-2 rounded w-32" />
-                  <input type="text" name="term" value={historyFilters.term} onChange={handleHistoryFilterChange} placeholder="Term" className="border p-2 rounded w-32" />
-                  <input type="text" name="session" value={historyFilters.session} onChange={handleHistoryFilterChange} placeholder="Session" className="border p-2 rounded w-32" />
-                  <input type="text" name="grade" value={historyFilters.grade} onChange={handleHistoryFilterChange} placeholder="Grade" className="border p-2 rounded w-32" />
+                  <input type="text" name="student_id" value={historyFilters.student_id} onChange={handleHistoryFilterChange} placeholder="Student ID" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
+                  <input type="text" name="subject" value={historyFilters.subject} onChange={handleHistoryFilterChange} placeholder="Subject" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
+                  <input type="text" name="term" value={historyFilters.term} onChange={handleHistoryFilterChange} placeholder="Term" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
+                  <input type="text" name="session" value={historyFilters.session} onChange={handleHistoryFilterChange} placeholder="Session" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
+                  <input type="text" name="grade" value={historyFilters.grade} onChange={handleHistoryFilterChange} placeholder="Grade" className="border p-2 rounded w-full sm:w-32 min-h-[44px] text-sm" />
             </div>
                 <div className="overflow-x-auto">
                   {/* Group results by student_id */}
