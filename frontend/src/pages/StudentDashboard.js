@@ -151,7 +151,7 @@ export default function StudentDashboard() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <span className="font-extrabold text-2xl tracking-wide hidden md:block">Dandeb School</span>
+          <span className="font-extrabold text-2xl tracking-wide hidden md:block">Mubito School</span>
           <button className="bg-green-600 hover:bg-green-800 px-4 py-2 rounded text-white font-semibold" onClick={() => { localStorage.clear(); window.location = '/'; }}>Logout</button>
         </div>
       </header>

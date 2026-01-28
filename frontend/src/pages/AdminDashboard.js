@@ -15,7 +15,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     // ✅ Make the title unique for Admin
-    document.title = 'Admin Dashboard – Dandeb School';
+    document.title = 'Admin Dashboard – Mubito School';
   }, []);
 
   const [csvFile, setCsvFile] = useState(null);
@@ -884,7 +884,7 @@ export default function AdminDashboard() {
       <div className="md:hidden flex items-center justify-between bg-green-700 text-white p-4 shadow-lg">
         <div className="flex items-center gap-2">
           <div className="bg-white text-green-700 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-green-300">B</div>
-          <span className="text-xl font-extrabold tracking-wide">Dandeb School</span>
+          <span className="text-xl font-extrabold tracking-wide">Mubito School</span>
         </div>
         <button onClick={() => setSidebarOpen(true)} className="text-3xl focus:outline-none">&#9776;</button>
       </div>
@@ -893,7 +893,7 @@ export default function AdminDashboard() {
         <div>
           <div className="mb-4 md:mb-8 flex items-center gap-2">
             <div className="bg-white text-green-700 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl border-2 border-green-300">B</div>
-            <span className="text-xl md:text-2xl font-extrabold tracking-wide">Dandeb School</span>
+            <span className="text-xl md:text-2xl font-extrabold tracking-wide">Mubito School</span>
           </div>
           <ul className="space-y-2 md:space-y-4 flex flex-row md:flex-col flex-wrap md:flex-nowrap">
             {NAV_ITEMS.map(item => (

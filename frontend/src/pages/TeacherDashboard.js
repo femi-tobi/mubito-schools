@@ -97,7 +97,7 @@ export default function TeacherDashboard() {
   
 
  useEffect(() => {
-    document.title = 'Teacher Dashboard – Dandeb School';
+    document.title = 'Teacher Dashboard – Mubito School';
   }, []);
 
   useEffect(() => {
@@ -404,7 +404,7 @@ export default function TeacherDashboard() {
           </div>
           <div>
             <div className="font-bold text-lg">Welcome, {teacher.fullname}</div>
-            <div className="text-sm text-green-200">Dandeb School Teacher</div>
+            <div className="text-sm text-green-200">Mubito School Teacher</div>
           </div>
         </div>
         <button className="bg-green-600 hover:bg-green-800 px-4 py-2 rounded text-white font-semibold" onClick={() => { localStorage.clear(); window.location = '/teacher-login'; }}>Logout</button>
